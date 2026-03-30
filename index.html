@@ -233,6 +233,79 @@
     .welcome-info p { color: rgba(255,255,255,0.8); margin-bottom: 0.5rem; font-size: 0.95rem; }
     .welcome-info strong { color: var(--white); }
 
+    /* ─── GALA ─── */
+    #gala {
+      background: #0a0a0a;
+      padding: 80px 0;
+      overflow: hidden;
+    }
+    .gala-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .gala-image-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+    .gala-image-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -20px;
+      background: radial-gradient(ellipse at center, rgba(184,148,63,0.25) 0%, transparent 70%);
+      border-radius: 24px;
+      pointer-events: none;
+    }
+    .gala-image-wrap img {
+      width: 100%;
+      max-width: 360px;
+      border-radius: 16px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(184,148,63,0.2);
+      display: block;
+    }
+    .gala-content { color: #fff; }
+    .gala-label {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold-light);
+      margin-bottom: 0.5rem;
+    }
+    .gala-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      font-weight: 700; color: #fff; line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .gala-title span { color: var(--gold); }
+    .gala-date {
+      font-size: 1.05rem; font-weight: 500; color: rgba(255,255,255,0.75);
+      margin-bottom: 0.5rem; letter-spacing: 0.04em;
+    }
+    .gala-verse {
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: 1rem; color: rgba(255,255,255,0.5);
+      margin-bottom: 2.5rem; line-height: 1.6;
+    }
+    .btn-gala {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 36px; border-radius: 50px;
+      background: linear-gradient(135deg, var(--gold) 0%, #d4ab5a 100%);
+      color: #0a0a0a; font-weight: 700; font-size: 0.95rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none;
+      box-shadow: 0 8px 32px rgba(184,148,63,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-gala:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(184,148,63,0.55);
+    }
+    @media (max-width: 768px) {
+      .gala-inner { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+      .gala-image-wrap img { max-width: 280px; }
+    }
+
     /* ─── ABOUT ─── */
     #about { background: var(--cream); }
     .about-grid {
@@ -654,6 +727,7 @@
             <a href="#sunday-school">Sunday School</a>
           </div>
         </div>
+        <div class="nav-item"><a href="#gala" class="nav-link" style="color:var(--gold); font-weight:600;">✦ Gala Dinner</a></div>
         <div class="nav-item"><a href="#events" class="nav-link">Events</a></div>
         <div class="nav-item"><a href="#contact" class="nav-link">Contact</a></div>
         <div class="nav-item"><a href="https://stwanas.chmeetings.com//Giving/C74398067620E88D" target="_blank" class="nav-link nav-cta">Donate</a></div>
@@ -673,6 +747,7 @@
     <a href="#leaders" class="sub">— Our Leaders</a>
     <a href="#services">Services & Schedule</a>
     <a href="#sunday-school" class="sub">— Sunday School</a>
+    <a href="#gala">✦ Gala Dinner</a>
     <a href="#events">Events</a>
     <a href="#donate">Donate</a>
     <a href="#contact">Contact Us</a>
@@ -723,6 +798,26 @@
     </div>
   </div>
 </div>
+
+<!-- ═══ GALA ═══ -->
+<section id="gala">
+  <div class="container">
+    <div class="gala-inner">
+      <div class="gala-image-wrap reveal">
+        <img src="gala.jpg" alt="St Wanas Gala Dinner 2026" />
+      </div>
+      <div class="gala-content reveal">
+        <p class="gala-label">Special Event</p>
+        <h2 class="gala-title">St Wanas<br><span>Gala Dinner</span></h2>
+        <p class="gala-date">📅 Friday, 8th May 2026</p>
+        <p class="gala-verse">"You are the light of the world" — Matthew 5:14</p>
+        <a href="https://events.humanitix.com/st-wanas-2026-gala-dinner/tickets" target="_blank" class="btn-gala">
+          🎟 Purchase Tickets
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ═══ ABOUT ═══ -->
 <section id="about">
