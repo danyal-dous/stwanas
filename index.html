@@ -233,6 +233,69 @@
     .welcome-info p { color: rgba(255,255,255,0.8); margin-bottom: 0.5rem; font-size: 0.95rem; }
     .welcome-info strong { color: var(--white); }
 
+    /* ─── HOLY WEEK ─── */
+    #holy-week { background: var(--cream); }
+    .hw-intro {
+      display: flex; align-items: flex-start; gap: 48px;
+      margin-bottom: 3rem;
+    }
+    .hw-poster {
+      flex-shrink: 0; width: 200px; border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(30,35,80,0.15);
+    }
+    .hw-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .hw-day {
+      background: var(--white); border-radius: 12px;
+      border: 1px solid var(--border); border-top: 4px solid var(--navy);
+      padding: 22px 20px; overflow: hidden;
+    }
+    .hw-day.resurrection {
+      border-top-color: var(--gold);
+      background: linear-gradient(135deg, var(--navy) 0%, #2a3070 100%);
+    }
+    .hw-day-date {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 4px;
+    }
+    .hw-day-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700; color: var(--navy);
+      margin-bottom: 14px; padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hw-day.resurrection .hw-day-date { color: var(--gold-light); }
+    .hw-day.resurrection .hw-day-name { color: var(--white); border-bottom-color: rgba(255,255,255,0.15); }
+    .hw-service {
+      display: flex; gap: 10px; margin-bottom: 9px; align-items: flex-start;
+    }
+    .hw-service:last-child { margin-bottom: 0; }
+    .hw-service-time {
+      font-size: 0.72rem; font-weight: 600; color: var(--gold);
+      min-width: 90px; flex-shrink: 0; padding-top: 1px;
+      line-height: 1.4;
+    }
+    .hw-service-name {
+      font-size: 0.82rem; color: var(--text); line-height: 1.4; font-weight: 500;
+    }
+    .hw-day.resurrection .hw-service-time { color: var(--gold-light); }
+    .hw-day.resurrection .hw-service-name { color: rgba(255,255,255,0.85); }
+    .hw-risen {
+      font-family: 'Playfair Display', serif; font-size: 1.4rem;
+      font-weight: 700; color: var(--gold); text-align: center;
+      margin: 8px 0 4px;
+    }
+    .hw-risen-sub {
+      font-size: 0.82rem; color: rgba(255,255,255,0.65); text-align: center;
+    }
+    @media (max-width: 640px) {
+      .hw-intro { flex-direction: column; align-items: center; }
+      .hw-poster { width: 160px; }
+    }
+
     /* ─── GALA ─── */
     #gala {
       background: #0a0a0a;
@@ -728,6 +791,7 @@
           </div>
         </div>
         <div class="nav-item"><a href="#gala" class="nav-link" style="color:var(--gold); font-weight:600;">✦ Gala Dinner</a></div>
+        <div class="nav-item"><a href="#holy-week" class="nav-link">Holy Week</a></div>
         <div class="nav-item"><a href="#events" class="nav-link">Events</a></div>
         <div class="nav-item"><a href="#contact" class="nav-link">Contact</a></div>
         <div class="nav-item"><a href="https://stwanas.chmeetings.com//Giving/C74398067620E88D" target="_blank" class="nav-link nav-cta">Donate</a></div>
@@ -748,6 +812,7 @@
     <a href="#services">Services & Schedule</a>
     <a href="#sunday-school" class="sub">— Sunday School</a>
     <a href="#gala">✦ Gala Dinner</a>
+    <a href="#holy-week">Holy Week</a>
     <a href="#events">Events</a>
     <a href="#donate">Donate</a>
     <a href="#contact">Contact Us</a>
@@ -1381,6 +1446,178 @@
         </div>
 
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOLY WEEK ═══ -->
+<section id="holy-week">
+  <div class="container">
+    <div class="text-center reveal">
+      <p class="section-label">April 2026</p>
+      <div class="divider"></div>
+      <h2 class="section-title">Holy Week Schedule 2026</h2>
+      <p class="section-subtitle">Join us as we walk through the final days of our Lord's life, death, and glorious resurrection.</p>
+    </div>
+
+    <div class="hw-grid" style="margin-top:3rem;">
+
+      <!-- Last Friday of Lent -->
+      <div class="hw-day reveal">
+        <div class="hw-day-date">Friday, April 3</div>
+        <div class="hw-day-name">Last Friday of Lent</div>
+        <div class="hw-service">
+          <div class="hw-service-time">8:00 – 10:00am</div>
+          <div class="hw-service-name">Unction of the Sick</div>
+        </div>
+        <div class="hw-service">
+          <div class="hw-service-time">10:00 – 11:00am</div>
+          <div class="hw-service-name">Matins</div>
+        </div>
+        <div class="hw-service">
+          <div class="hw-service-time">11:00am – 1:00pm</div>
+          <div class="hw-service-name">Holy Liturgy</div>
+        </div>
+      </div>
+
+      <!-- Lazarus Saturday -->
+      <div class="hw-day reveal">
+        <div class="hw-day-date">Saturday, April 4</div>
+        <div class="hw-day-name">Lazarus Saturday</div>
+        <div class="hw-service">
+          <div class="hw-service-time">8:30 – 10:30am</div>
+          <div class="hw-service-name">Holy Liturgy</div>
+        </div>
+        <div class="hw-service">
+          <div class="hw-service-time">4:00 – 5:30pm</div>
+          <div class="hw-service-name">Palm Weaving Lessons</div>
+        </div>
+        <div class="hw-service">
+          <div class="hw-service-time">6:30 – 8:30pm</div>
+          <div class="hw-service-name">Palm Sunday Vespers</div>
+        </div>
+      </div>
+
+      <!-- Palm Sunday -->
+      <div class="hw-day reveal">
+        <div class="hw-day-date">Sunday, April 5</div>
+        <div class="hw-day-name">Palm Sunday</div>
+        <div class="hw-service">
+          <div class="hw-service-time">7:30 – 9:00am</div>
+          <div class="hw-service-name">Procession of the Cross</div>
+        </div>
+        <div class="hw-service">
+          <div class="hw-service-time">9:00 – 11:30am</div>
+          <div class="hw-service-name">Holy Liturgy</div>
+        </div>
+        <div class="hw-service">
+          <div class="hw-service-time">11:30am – 12:30pm</div>
+          <div class="hw-service-name">General Funeral Service</div>
+        </div>
+        <div class="hw-service">
+          <div class="hw-service-time">6:00 – 8:30pm</div>
+          <div class="hw-service-name">Pascha of Monday Eve</div>
+        </div>
+      </div>
+
+      <!-- Monday to Wednesday -->
+      <div class="hw-day reveal">
+        <div class="hw-day-date">April 6 – 8</div>
+        <div class="hw-day-name">Monday to Wednesday</div>
+        <div class="hw-service">
+          <div class="hw-service-time">6:00 – 7:00am</div>
+          <div class="hw-service-name">Early Hour Pascha</div>
+        </div>
+        <div class="hw-service">
+          <div class="hw-service-time">10:00 – 11:00am</div>
+          <div class="hw-service-name">Morning Hour Pascha</div>
+        </div>
+        <div class="hw-service">
+          <div class="hw-service-time">6:00 – 8:30pm</div>
+          <div class="hw-service-name">Evening Pascha</div>
+        </div>
+      </div>
+
+      <!-- Holy Thursday -->
+      <div class="hw-day reveal">
+        <div class="hw-day-date">Thursday, April 9</div>
+        <div class="hw-day-name">Holy Thursday</div>
+        <div class="hw-service">
+          <div class="hw-service-time">7:00 – 8:30am</div>
+          <div class="hw-service-name">Morning Pascha</div>
+        </div>
+        <div class="hw-service">
+          <div class="hw-service-time">9:30 – 10:00am</div>
+          <div class="hw-service-name">Matins &amp; Procession of Judas</div>
+        </div>
+        <div class="hw-service">
+          <div class="hw-service-time">10:00 – 11:30am</div>
+          <div class="hw-service-name">Liturgy He Washed (Akan)</div>
+        </div>
+        <div class="hw-service">
+          <div class="hw-service-time">11:30am – 1:00pm</div>
+          <div class="hw-service-name">Holy Liturgy</div>
+        </div>
+        <div class="hw-service">
+          <div class="hw-service-time">5:00 – 8:30pm</div>
+          <div class="hw-service-name">Evening Pascha</div>
+        </div>
+      </div>
+
+      <!-- Good Friday -->
+      <div class="hw-day reveal">
+        <div class="hw-day-date">Friday, April 10</div>
+        <div class="hw-day-name">Good Friday</div>
+        <div class="hw-service">
+          <div class="hw-service-time">8:00am – 6:00pm</div>
+          <div class="hw-service-name">Good Friday Service</div>
+        </div>
+        <div class="hw-service">
+          <div class="hw-service-time">10:00pm – 4:30am</div>
+          <div class="hw-service-name">Apocalypse</div>
+        </div>
+      </div>
+
+      <!-- Joyous Saturday -->
+      <div class="hw-day reveal">
+        <div class="hw-day-date">Saturday, April 11</div>
+        <div class="hw-day-name">Joyous Saturday</div>
+        <div class="hw-service">
+          <div class="hw-service-time">4:30 – 6:30am</div>
+          <div class="hw-service-name">Joyous Saturday Liturgy</div>
+        </div>
+        <div class="hw-service">
+          <div class="hw-service-time">5:00 – 6:00pm</div>
+          <div class="hw-service-name">Matins</div>
+        </div>
+        <div class="hw-service">
+          <div class="hw-service-time">From 8:00pm</div>
+          <div class="hw-service-name">Feast of the Resurrection Liturgy</div>
+        </div>
+        <div class="hw-service">
+          <div class="hw-service-time"></div>
+          <div class="hw-service-name">Community Feast at Church</div>
+        </div>
+      </div>
+
+      <!-- Resurrection Sunday -->
+      <div class="hw-day resurrection reveal">
+        <div class="hw-day-date">Sunday, April 12</div>
+        <div class="hw-day-name">Resurrection Sunday</div>
+        <div class="hw-risen">✝ Christ is Risen!</div>
+        <div class="hw-risen-sub">Exhrestos Anesti · Christos Anesti</div>
+      </div>
+
+      <!-- Easter Monday -->
+      <div class="hw-day reveal">
+        <div class="hw-day-date">Monday, April 13</div>
+        <div class="hw-day-name">Easter Monday</div>
+        <div class="hw-service">
+          <div class="hw-service-time">7:00 – 9:00am</div>
+          <div class="hw-service-name">Sham Elneseem Liturgy</div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
