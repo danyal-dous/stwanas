@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>St Wanas Coptic Orthodox Church | Belmore, Sydney</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── RESET & BASE ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #2d2d2d;
+      background: #faf9f7;
+      line-height: 1.7;
+    }
+
+    /* ─── COLOUR TOKENS ─── */
+    :root {
+      --navy:  #1e2350;
+      --gold:  #b8943f;
+      --gold-light: #d4ab5a;
+      --cream: #faf9f7;
+      --cream-dark: #f2ede6;
+      --text:  #2d2d2d;
+      --text-muted: #6b6b6b;
+      --white: #ffffff;
+      --border: rgba(184,148,63,0.25);
+    }
+
+    /* ─── TYPOGRAPHY ─── */
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--navy);
+      margin-top: 0.4rem;
+    }
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 620px;
+      margin-top: 0.75rem;
+    }
+
+    /* ─── LAYOUT HELPERS ─── */
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    section { padding: 80px 0; }
+    .divider {
+      width: 60px; height: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin: 1rem 0;
+    }
+    .text-center { text-align: center; }
+    .text-center .divider { margin: 1rem auto; }
+    .text-center .section-subtitle { margin: 0.75rem auto 0; }
+
+    /* ─── NAVBAR ─── */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s;
+    }
+    #navbar.scrolled { box-shadow: 0 2px 20px rgba(30,35,80,0.1); }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .nav-brand img { width: 52px; height: 52px; object-fit: contain; }
+    .nav-brand-text { line-height: 1.2; }
+    .nav-brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem; font-weight: 700;
+      color: var(--navy); letter-spacing: 0.04em;
+    }
+    .nav-brand-sub {
+      font-size: 0.65rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--gold);
+    }
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+    .nav-item { position: relative; }
+    .nav-link {
+      display: block; padding: 8px 14px;
+      font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--navy); text-decoration: none;
+      border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-link:hover { color: var(--gold); background: rgba(184,148,63,0.08); }
+    .nav-link.has-dropdown::after {
+      content: '▾'; font-size: 0.6rem; margin-left: 4px;
+    }
+    .dropdown {
+      position: absolute; top: calc(100% + 8px); left: 0;
+      background: var(--white); border-radius: 10px;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 32px rgba(30,35,80,0.12);
+      min-width: 200px; padding: 8px;
+      opacity: 0; visibility: hidden;
+      transform: translateY(-8px);
+      transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+    }
+    .nav-item:hover .dropdown {
+      opacity: 1; visibility: visible; transform: translateY(0);
+    }
+    .dropdown a {
+      display: block; padding: 9px 14px;
+      font-size: 0.82rem; color: var(--text);
+      text-decoration: none; border-radius: 6px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .dropdown a:hover { background: var(--cream-dark); color: var(--navy); }
+    .nav-cta {
+      background: var(--navy); color: var(--white) !important;
+      border-radius: 8px; padding: 10px 20px !important;
+      font-size: 0.8rem !important; font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--gold) !important; }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 8px;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--navy); border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .mobile-menu {
+      display: none; flex-direction: column;
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      padding: 16px 24px 24px;
+    }
+    .mobile-menu a {
+      padding: 10px 0; font-size: 0.9rem; font-weight: 500;
+      color: var(--navy); text-decoration: none;
+      border-bottom: 1px solid rgba(184,148,63,0.12);
+    }
+    .mobile-menu a.sub { padding-left: 16px; color: var(--text-muted); font-size: 0.85rem; }
+    .mobile-menu a:last-child { border-bottom: none; }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(to bottom, rgba(30,35,80,0.65) 0%, rgba(30,35,80,0.4) 50%, rgba(30,35,80,0.75) 100%),
+        url('https://static.wixstatic.com/media/1bd485_5885180b4aac4f55ba9ae7e544533b3c~mv2.jpg/v1/fill/w_1440,h_900,al_c,q_85,usm_0.66_1.00_0.01/1bd485_5885180b4aac4f55ba9ae7e544533b3c~mv2.jpg') center/cover no-repeat;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 120px 24px 80px;
+    }
+    .hero-content { max-width: 760px; }
+    .hero-label {
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--gold-light); margin-bottom: 1rem;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 700; color: var(--white);
+      line-height: 1.15; margin-bottom: 1.5rem;
+    }
+    .hero-title em { font-style: italic; color: var(--gold-light); }
+    .hero-text {
+      font-size: 1.05rem; color: rgba(255,255,255,0.88);
+      max-width: 580px; margin: 0 auto 2.5rem;
+    }
+    .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-block; padding: 14px 32px;
+      font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      border-radius: 8px; text-decoration: none;
+      transition: all 0.25s; cursor: pointer; border: 2px solid transparent;
+    }
+    .btn-primary { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    .btn-primary:hover { background: var(--gold-light); border-color: var(--gold-light); }
+    .btn-outline { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.7); }
+    .btn-outline:hover { background: rgba(255,255,255,0.15); border-color: var(--white); }
+    .btn-navy { background: var(--navy); color: var(--white); border-color: var(--navy); }
+    .btn-navy:hover { background: #2a316b; border-color: #2a316b; }
+    .hero-scroll {
+      position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+      color: rgba(255,255,255,0.6); font-size: 0.75rem;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .hero-scroll svg { animation: bounce 2s infinite; }
+    @keyframes bounce {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+    }
+
+    /* ─── WELCOME BANNER ─── */
+    #welcome {
+      background: var(--navy);
+      padding: 60px 0;
+    }
+    .welcome-inner {
+      display: grid; grid-template-columns: 1fr 2px 1fr;
+      gap: 48px; align-items: center;
+    }
+    .welcome-divider { background: rgba(184,148,63,0.4); height: 100%; }
+    .welcome-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; font-style: italic;
+      color: var(--white); line-height: 1.5;
+    }
+    .welcome-quote span { color: var(--gold-light); }
+    .welcome-info p { color: rgba(255,255,255,0.8); margin-bottom: 0.5rem; font-size: 0.95rem; }
+    .welcome-info strong { color: var(--white); }
+
+    /* ─── ABOUT ─── */
+    #about { background: var(--cream); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center;
+    }
+    .about-image-wrap {
+      position: relative; border-radius: 16px; overflow: hidden;
+    }
+    .about-image-wrap img {
+      width: 100%; height: 480px; object-fit: cover; display: block;
+      border-radius: 16px;
+    }
+    .about-image-badge {
+      position: absolute; bottom: -20px; right: -20px;
+      width: 120px; height: 120px;
+      background: var(--navy); border-radius: 50%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; border: 4px solid var(--gold);
+    }
+    .about-image-badge .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem; font-weight: 700; color: var(--gold-light);
+      line-height: 1;
+    }
+    .about-image-badge .txt {
+      font-size: 0.6rem; color: rgba(255,255,255,0.8);
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .about-content p { color: var(--text-muted); margin-bottom: 1.2rem; font-size: 0.98rem; }
+    .commitments { margin-top: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .commitment-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 12px; background: var(--cream-dark); border-radius: 10px;
+    }
+    .commitment-icon { color: var(--gold); font-size: 1.1rem; margin-top: 2px; flex-shrink: 0; }
+    .commitment-label { font-size: 0.88rem; font-weight: 600; color: var(--navy); }
+
+    /* ─── SERVICES ─── */
+    #services { background: var(--cream-dark); }
+    .services-quote {
+      text-align: center; font-family: 'Playfair Display', serif;
+      font-style: italic; font-size: 1.15rem;
+      color: var(--navy); max-width: 600px; margin: 0 auto 3rem;
+      padding: 24px; border-left: 4px solid var(--gold);
+      background: var(--white); border-radius: 0 12px 12px 0;
+      text-align: left;
+    }
+    .services-quote cite { display: block; font-size: 0.8rem; font-style: normal; color: var(--gold); margin-top: 8px; }
+    .day-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .day-card {
+      background: var(--white); border-radius: 16px;
+      border: 1px solid var(--border); overflow: hidden;
+    }
+    .day-header {
+      background: var(--navy); padding: 16px 24px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .day-icon {
+      width: 36px; height: 36px; background: var(--gold);
+      border-radius: 8px; display: flex; align-items: center;
+      justify-content: center; color: white; font-size: 1rem;
+    }
+    .day-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700; color: var(--white);
+    }
+    .day-body { padding: 20px 24px; }
+    .service-item {
+      display: flex; gap: 14px;
+      padding: 10px 0; border-bottom: 1px solid rgba(184,148,63,0.12);
+    }
+    .service-item:last-child { border-bottom: none; }
+    .service-time {
+      font-size: 0.78rem; font-weight: 600; color: var(--gold);
+      min-width: 100px; padding-top: 2px;
+    }
+    .service-desc { font-size: 0.88rem; color: var(--text); }
+
+    /* ─── LEADERS ─── */
+    #leaders { background: var(--navy); }
+    #leaders .section-title { color: var(--white); }
+    #leaders .section-label { color: var(--gold-light); }
+    #leaders .divider { background: var(--gold); }
+    .leaders-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .leader-card {
+      text-align: center;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(184,148,63,0.25);
+      border-radius: 16px; padding: 36px 24px;
+    }
+    .leader-avatar {
+      width: 120px; height: 120px; border-radius: 50%;
+      margin: 0 auto 20px;
+      border: 3px solid var(--gold);
+      object-fit: cover; object-position: top;
+      background: rgba(255,255,255,0.1);
+    }
+    .leader-role {
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--gold-light); margin-bottom: 8px;
+    }
+    .leader-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; font-weight: 700; color: var(--white);
+      margin-bottom: 6px;
+    }
+    .leader-title { font-size: 0.82rem; color: rgba(255,255,255,0.55); }
+    .leader-bio { font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-top: 14px; line-height: 1.6; }
+
+    /* ─── PATRON SAINT ─── */
+    #patron { background: var(--cream); }
+    .patron-grid {
+      display: grid; grid-template-columns: 340px 1fr;
+      gap: 64px; align-items: start;
+    }
+    .patron-image-wrap {
+      border-radius: 16px; overflow: hidden;
+      border: 3px solid var(--gold);
+      box-shadow: 0 12px 40px rgba(30,35,80,0.15);
+    }
+    .patron-image-wrap img { width: 100%; display: block; }
+    .patron-content p { color: var(--text-muted); margin-bottom: 1.2rem; font-size: 0.98rem; }
+    .patron-feast {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--navy); color: var(--white);
+      padding: 10px 20px; border-radius: 8px;
+      font-size: 0.85rem; font-weight: 600; margin-top: 1rem;
+    }
+
+    /* ─── CORE BELIEFS ─── */
+    #beliefs { background: var(--cream-dark); }
+    .beliefs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    .belief-card {
+      background: var(--white); border-radius: 14px;
+      padding: 28px 24px; border: 1px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .belief-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(30,35,80,0.1); }
+    .belief-icon { font-size: 1.8rem; margin-bottom: 14px; }
+    .belief-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; font-weight: 700; color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .belief-text { font-size: 0.87rem; color: var(--text-muted); line-height: 1.65; }
+
+    /* ─── SUNDAY SCHOOL ─── */
+    #sunday-school { background: var(--cream); }
+    .ss-verse {
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: 1.1rem; color: var(--navy); text-align: center;
+      margin-bottom: 3rem; max-width: 500px; margin-left: auto; margin-right: auto;
+    }
+    .ss-verse cite { display: block; font-size: 0.8rem; font-style: normal; color: var(--gold); margin-top: 6px; }
+    .ss-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+    .ss-group {
+      background: var(--navy); border-radius: 14px;
+      padding: 24px 20px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .ss-group::before {
+      content: ''; position: absolute; top: -30px; right: -30px;
+      width: 80px; height: 80px; border-radius: 50%;
+      background: rgba(184,148,63,0.15);
+    }
+    .ss-group-icon { font-size: 1.6rem; margin-bottom: 10px; }
+    .ss-group-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 6px;
+    }
+    .ss-group-age { font-size: 0.78rem; color: var(--gold-light); }
+
+    /* ─── HISTORY ─── */
+    #history { background: var(--navy); }
+    #history .section-title { color: var(--white); }
+    #history .section-label { color: var(--gold-light); }
+    #history .divider { background: var(--gold); }
+    .history-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .history-content p { color: rgba(255,255,255,0.78); margin-bottom: 1.2rem; font-size: 0.97rem; }
+    .pillars-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .pillar {
+      background: rgba(255,255,255,0.07); border-radius: 12px;
+      padding: 18px 16px; border: 1px solid rgba(184,148,63,0.2);
+    }
+    .pillar-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem; font-weight: 700; color: var(--gold-light);
+      margin-bottom: 6px;
+    }
+    .pillar-text { font-size: 0.82rem; color: rgba(255,255,255,0.6); }
+
+    /* ─── DONATE ─── */
+    #donate { background: var(--gold); }
+    .donate-inner { display: flex; align-items: center; gap: 48px; justify-content: space-between; }
+    .donate-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem); color: var(--white);
+    }
+    .donate-text p { color: rgba(255,255,255,0.85); margin-top: 0.5rem; max-width: 480px; }
+    .donate-actions { display: flex; gap: 16px; flex-shrink: 0; flex-wrap: wrap; }
+    .btn-white { background: var(--white); color: var(--gold); border-color: var(--white); }
+    .btn-white:hover { background: rgba(255,255,255,0.9); }
+    .btn-outline-white { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.7); }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.15); }
+
+    /* ─── CONTACT ─── */
+    #contact { background: var(--cream); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+    .contact-info { }
+    .contact-detail {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 20px 0; border-bottom: 1px solid var(--border);
+    }
+    .contact-detail:last-of-type { border-bottom: none; }
+    .contact-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--navy); display: flex; align-items: center;
+      justify-content: center; color: var(--gold); font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .contact-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+    .contact-value { font-size: 0.95rem; color: var(--navy); font-weight: 500; }
+    .contact-value a { color: var(--navy); text-decoration: none; }
+    .contact-value a:hover { color: var(--gold); }
+    .contact-form { background: var(--white); border-radius: 16px; padding: 36px; border: 1px solid var(--border); }
+    .contact-form h3 { font-size: 1.3rem; color: var(--navy); margin-bottom: 24px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; padding: 12px 16px;
+      border: 1.5px solid #ddd; border-radius: 8px;
+      font-family: 'Inter', sans-serif; font-size: 0.9rem;
+      color: var(--text); background: var(--cream);
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none; border-color: var(--gold);
+      background: var(--white);
+    }
+    .form-group textarea { height: 120px; resize: vertical; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .map-embed { margin-top: 2rem; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+    .map-embed iframe { width: 100%; height: 220px; border: none; display: block; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #131628;
+      padding: 60px 0 32px;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px; margin-bottom: 48px;
+    }
+    .footer-brand img { width: 56px; height: 56px; margin-bottom: 14px; }
+    .footer-brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; color: var(--white); margin-bottom: 4px;
+    }
+    .footer-brand-sub { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+    .footer-brand p { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.65; max-width: 260px; }
+    .footer-col h4 {
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul a { font-size: 0.85rem; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; }
+    .footer-col ul a:hover { color: var(--gold-light); }
+    .footer-social { display: flex; gap: 12px; margin-top: 20px; }
+    .social-icon {
+      width: 38px; height: 38px; border-radius: 8px;
+      background: rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.7); text-decoration: none;
+      font-size: 0.9rem; transition: background 0.2s, color 0.2s;
+    }
+    .social-icon:hover { background: var(--gold); color: var(--white); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 24px; display: flex;
+      justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-bottom p { font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+    .footer-bottom a { color: var(--gold-light); text-decoration: none; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .leaders-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+    @media (max-width: 768px) {
+      section { padding: 60px 0; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .mobile-menu.open { display: flex; }
+      .about-grid, .patron-grid, .history-grid, .contact-grid { grid-template-columns: 1fr; }
+      .about-image-wrap { order: -1; }
+      .about-image-wrap img { height: 300px; }
+      .about-image-badge { display: none; }
+      .leaders-grid { grid-template-columns: 1fr; }
+      .welcome-inner { grid-template-columns: 1fr; }
+      .welcome-divider { display: none; }
+      .donate-inner { flex-direction: column; text-align: center; }
+      .donate-actions { justify-content: center; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .commitments { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .pillars-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: 2rem; }
+      .day-grid { grid-template-columns: 1fr; }
+      .beliefs-grid { grid-template-columns: 1fr; }
+      .ss-groups { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ─── CROSS DECORATION ─── */
+    .cross-deco {
+      display: inline-block; color: var(--gold); font-size: 1.4rem;
+      margin: 0 10px; opacity: 0.6;
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#home" class="nav-brand">
+        <img src="https://static.wixstatic.com/media/1bd485_ee0b3c15e4994e38be9def08186466d5~mv2.png/v1/fill/w_166,h_166,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/st%20wanas%20logo%20png.png" alt="St Wanas Logo" />
+        <div class="nav-brand-text">
+          <div class="nav-brand-name">St Wanas</div>
+          <div class="nav-brand-sub">Coptic Orthodox Church</div>
+        </div>
+      </a>
+
+      <div class="nav-links">
+        <div class="nav-item"><a href="#home" class="nav-link">Home</a></div>
+        <div class="nav-item">
+          <a href="#about" class="nav-link has-dropdown">About Us</a>
+          <div class="dropdown">
+            <a href="#about">About the Church</a>
+            <a href="#beliefs">Core Beliefs</a>
+            <a href="#patron">Our Patron Saint</a>
+            <a href="#history">Church History</a>
+            <a href="#leaders">Our Leaders</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="#services" class="nav-link has-dropdown">Services</a>
+          <div class="dropdown">
+            <a href="#services">Weekly Schedule</a>
+            <a href="#sunday-school">Sunday School</a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="#contact" class="nav-link">Contact</a></div>
+        <div class="nav-item"><a href="https://stwanas.chmeetings.com" target="_blank" class="nav-link nav-cta">Donate</a></div>
+      </div>
+
+      <div class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#home">Home</a>
+    <a href="#about">About Us</a>
+    <a href="#beliefs" class="sub">— Core Beliefs</a>
+    <a href="#patron" class="sub">— Our Patron Saint</a>
+    <a href="#history" class="sub">— Church History</a>
+    <a href="#leaders" class="sub">— Our Leaders</a>
+    <a href="#services">Services & Schedule</a>
+    <a href="#sunday-school" class="sub">— Sunday School</a>
+    <a href="#donate">Donate</a>
+    <a href="#contact">Contact Us</a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="home" style="position:relative; padding:0;">
+  <div id="hero">
+    <div class="hero-content reveal">
+      <p class="hero-label">✦ &nbsp; Belmore, Sydney &nbsp; ✦</p>
+      <h1 class="hero-title">Welcoming You <em>Home</em></h1>
+      <p class="hero-text">
+        St Wanas Coptic Orthodox Church — a family of faith in the heart of Sydney's Inner West,
+        where ancient traditions meet a living, welcoming community.
+      </p>
+      <div class="hero-buttons">
+        <a href="#about" class="btn btn-primary">Discover Our Church</a>
+        <a href="#services" class="btn btn-outline">View Services</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <svg width="16" height="20" viewBox="0 0 16 20" fill="none">
+      <path d="M8 1v14M2 9l6 6 6-6" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ═══ WELCOME BANNER ═══ -->
+<div id="welcome">
+  <div class="container">
+    <div class="welcome-inner">
+      <div>
+        <p class="welcome-quote">
+          "The church where <span>everybody</span> is a <span>somebody</span>"
+        </p>
+      </div>
+      <div class="welcome-divider"></div>
+      <div class="welcome-info reveal">
+        <p>Our Reverend Father <strong>Suriel Hanna</strong> welcomes you and your family to St Wanas Coptic Orthodox Church.</p>
+        <p>We are a church of the Orthodox Christian Faith established on the day of Holy Pentecost in the Year <strong>33 AD</strong>, now part of the Coptic Orthodox Diocese of Sydney.</p>
+        <p style="margin-top:1rem;">
+          <a href="https://www.google.com/maps/search/458+Burwood+Rd+Belmore+NSW" target="_blank" class="btn btn-outline" style="padding:10px 20px; font-size:0.78rem;">📍 458 Burwood Rd, Belmore NSW</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image-wrap reveal">
+        <img src="https://static.wixstatic.com/media/1bd485_2ee40401c17244b4b855453e6d7d1347~mv2.jpg/v1/fill/w_600,h_800,al_c,q_85,usm_0.66_1.00_0.01/1bd485_2ee40401c17244b4b855453e6d7d1347~mv2.jpg"
+             alt="St Wanas Coptic Orthodox Church Community" />
+        <div class="about-image-badge">
+          <div class="num">33</div>
+          <div class="txt">AD Founded</div>
+        </div>
+      </div>
+      <div class="about-content reveal">
+        <p class="section-label">About Us</p>
+        <div class="divider"></div>
+        <h2 class="section-title">An Ancient Modern Christian Church</h2>
+        <p style="margin-top:1.5rem;">
+          St Wanas' Coptic Orthodox Church is an Orthodox Christian parish within the Diocese of Sydney
+          serving the Inner-West suburbs of Sydney and surrounding regions with an emphasis on
+          community and service.
+        </p>
+        <p>
+          We believe that church is the only place where everyone is accepted and served.
+          Only through God's grace, can we serve those of all ages, gifts, talents, backgrounds
+          and needs. The mission of our family-oriented parish is to welcome and serve everyone
+          through our Coptic Orthodox Christianity. We are a resilient church whilst still
+          preserving the beauty of our rich history.
+        </p>
+        <p>
+          By God's grace, we strive for an organized and thriving church that will nurture a sense
+          of fellowship within its congregation and focus on raising its children and youth with
+          diligence, so that future generations may understand and fully appreciate the beauty of
+          the Holy Mysteries and enjoy an intimate relationship with our Lord.
+        </p>
+        <div class="commitments">
+          <div class="commitment-item">
+            <div class="commitment-icon">✝</div>
+            <div><div class="commitment-label">Apostolic</div></div>
+          </div>
+          <div class="commitment-item">
+            <div class="commitment-icon">📖</div>
+            <div><div class="commitment-label">Biblical</div></div>
+          </div>
+          <div class="commitment-item">
+            <div class="commitment-icon">🕊</div>
+            <div><div class="commitment-label">Traditional</div></div>
+          </div>
+          <div class="commitment-item">
+            <div class="commitment-icon">🙏</div>
+            <div><div class="commitment-label">Sacramental</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ═══ -->
+<section id="services">
+  <div class="container">
+    <div class="text-center reveal">
+      <p class="section-label">Weekly Schedule</p>
+      <div class="divider"></div>
+      <h2 class="section-title">Services &amp; Sermons</h2>
+      <p class="section-subtitle">Join us throughout the week for worship, fellowship, and spiritual growth.</p>
+    </div>
+    <div style="margin: 2.5rem 0 3rem;">
+      <div class="services-quote">
+        "Therefore welcome one another as Christ has welcomed you, for the glory of God"
+        <cite>Romans 15:7</cite>
+      </div>
+    </div>
+    <div class="day-grid">
+      <div class="day-card reveal">
+        <div class="day-header">
+          <div class="day-icon">✝</div>
+          <div class="day-name">Tuesday</div>
+        </div>
+        <div class="day-body">
+          <div class="service-item">
+            <div class="service-time">6:30 – 7:30pm</div>
+            <div class="service-desc">Hymnology &amp; Tasbeha for High School and Youth</div>
+          </div>
+          <div class="service-item">
+            <div class="service-time">7:30 – 8:30pm</div>
+            <div class="service-desc">Meeting for Youth &amp; School Leavers</div>
+          </div>
+          <div class="service-item">
+            <div class="service-time">7:30 – 8:30pm</div>
+            <div class="service-desc">Meeting for High School Kids</div>
+          </div>
+          <div class="service-item">
+            <div class="service-time">8:00 – 9:00pm</div>
+            <div class="service-desc">Bible Study for Parents</div>
+          </div>
+          <div class="service-item">
+            <div class="service-time">8:30 – 10:30pm</div>
+            <div class="service-desc">Fellowship, Food and Activities</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-card reveal">
+        <div class="day-header">
+          <div class="day-icon">✝</div>
+          <div class="day-name">Thursday</div>
+        </div>
+        <div class="day-body">
+          <div class="service-item">
+            <div class="service-time">5:00 – 7:00am</div>
+            <div class="service-desc">Holy Liturgy (English) — Administration of Holy Communion and Visitations</div>
+          </div>
+          <div class="service-item">
+            <div class="service-time">8:30 – 10:30am</div>
+            <div class="service-desc">Holy Liturgy (Arabic)</div>
+          </div>
+          <div class="service-item">
+            <div class="service-time">10:30 – 11:30am</div>
+            <div class="service-desc">Breakfast and Fellowship (Senior Citizens)</div>
+          </div>
+          <div class="service-item">
+            <div class="service-time">11:30 – 12:30pm</div>
+            <div class="service-desc">Spiritual Word (Arabic)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-card reveal">
+        <div class="day-header">
+          <div class="day-icon">✝</div>
+          <div class="day-name">Friday</div>
+        </div>
+        <div class="day-body">
+          <div class="service-item">
+            <div class="service-time">8:30 – 10:30am</div>
+            <div class="service-desc">Holy Liturgy (English)</div>
+          </div>
+          <div class="service-item">
+            <div class="service-time">5:30 – 6:30pm</div>
+            <div class="service-desc">Hymnology Lessons for Primary School Children</div>
+          </div>
+          <div class="service-item">
+            <div class="service-time">6:30 – 7:30pm</div>
+            <div class="service-desc">Vespers Services</div>
+          </div>
+          <div class="service-item">
+            <div class="service-time">7:30 – 8:30pm</div>
+            <div class="service-desc">Tasbeha &amp; Midnight Praises</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-card reveal">
+        <div class="day-header">
+          <div class="day-icon">✝</div>
+          <div class="day-name">Saturday</div>
+        </div>
+        <div class="day-body">
+          <div class="service-item">
+            <div class="service-time">Evening</div>
+            <div class="service-desc">Vespers &amp; Midnight Praises</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-card reveal">
+        <div class="day-header">
+          <div class="day-icon">✝</div>
+          <div class="day-name">Sunday</div>
+        </div>
+        <div class="day-body">
+          <div class="service-item">
+            <div class="service-time">8:30 – 10:45am</div>
+            <div class="service-desc">Holy Liturgy</div>
+          </div>
+          <div class="service-item">
+            <div class="service-time">11:30 – 12:30pm</div>
+            <div class="service-desc">Sunday School &amp; Pre-Servants</div>
+          </div>
+          <div class="service-item">
+            <div class="service-time">12:45 – 1:30pm</div>
+            <div class="service-desc">Community Fellowship</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LEADERS ═══ -->
+<section id="leaders">
+  <div class="container">
+    <div class="text-center reveal">
+      <p class="section-label">Our Leaders</p>
+      <div class="divider"></div>
+      <h2 class="section-title">Shepherds of Our Faith</h2>
+    </div>
+    <div class="leaders-grid" style="margin-top: 3rem;">
+      <div class="leader-card reveal">
+        <img class="leader-avatar"
+          src="https://static.wixstatic.com/media/1bd485_ee0b3c15e4994e38be9def08186466d5~mv2.png/v1/fill/w_166,h_166,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/st%20wanas%20logo%20png.png"
+          alt="H.H. Pope Tawadros II" />
+        <div class="leader-role">Our Pope</div>
+        <div class="leader-name">H.H. Pope Tawadros II</div>
+        <div class="leader-title">118th Pope of Alexandria &amp; Patriarch of the See of St Mark</div>
+        <p class="leader-bio">
+          His Holiness Pope Tawadros II was born on November 4th, 1952, in Mansoura, Egypt.
+          He received a bachelor's degree in pharmacy from Alexandria University and entered
+          the Monastery of St. Bishoy in 1986. He was ordained a monk in 1988 and elevated
+          to the papacy as the 118th Pope of Alexandria.
+        </p>
+      </div>
+      <div class="leader-card reveal">
+        <img class="leader-avatar"
+          src="https://static.wixstatic.com/media/1bd485_ee0b3c15e4994e38be9def08186466d5~mv2.png/v1/fill/w_166,h_166,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/st%20wanas%20logo%20png.png"
+          alt="H.G. Bishop Daniel" />
+        <div class="leader-role">Our Bishop</div>
+        <div class="leader-name">H.G. Bishop Daniel</div>
+        <div class="leader-title">First Bishop of Sydney</div>
+        <p class="leader-bio">
+          His Grace Bishop Daniel serves as the First Bishop of Sydney under the auspices
+          of the Coptic Orthodox Diocese of Sydney, overseeing the spiritual wellbeing
+          and pastoral care of the Coptic community across New South Wales.
+        </p>
+      </div>
+      <div class="leader-card reveal">
+        <img class="leader-avatar"
+          src="https://static.wixstatic.com/media/1bd485_ee0b3c15e4994e38be9def08186466d5~mv2.png/v1/fill/w_166,h_166,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/st%20wanas%20logo%20png.png"
+          alt="Very Rev. Fr Suriel Hanna" />
+        <div class="leader-role">Our Priest</div>
+        <div class="leader-name">Very Rev. Fr Suriel Hanna</div>
+        <div class="leader-title">First Priest of St Wanas Church</div>
+        <p class="leader-bio">
+          Very Reverend Father Suriel Hanna serves as the First Priest of St Wanas Coptic
+          Orthodox Church, faithfully shepherding the congregation with love, dedication,
+          and a deep commitment to the Coptic Orthodox faith and the community he serves.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PATRON SAINT ═══ -->
+<section id="patron">
+  <div class="container">
+    <div class="patron-grid">
+      <div class="reveal">
+        <div class="patron-image-wrap">
+          <img src="https://static.wixstatic.com/media/1bd485_ee0b3c15e4994e38be9def08186466d5~mv2.png/v1/fill/w_340,h_400,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/st%20wanas%20logo%20png.png"
+               alt="St Wanas the Child Martyr" />
+        </div>
+        <div style="text-align:center; margin-top: 1.5rem;">
+          <span class="patron-feast">
+            <span>✝</span>
+            Feast Day: Celebrated with joy &amp; devotion
+          </span>
+        </div>
+      </div>
+      <div class="patron-content reveal">
+        <p class="section-label">Our Patron Saint</p>
+        <div class="divider"></div>
+        <h2 class="section-title">St Wanas<br /><span style="font-size:1.5rem; color: var(--gold);">The Child Martyr</span></h2>
+        <p style="margin-top:1.5rem;">
+          Saint Anba Youanis (Wanas) was the only child born to a pious Christian couple in Luxor, who
+          brought him up in the Christian faith. Despite his young age, he was ordained a deacon by the
+          bishop of the city because of his love for Christ and his spiritual maturity.
+        </p>
+        <p>
+          He was raised in love of virtue, love of the Church, fear of God, reading the Bible, and
+          learning about the lives of the saints and martyrs. He lived as an ascetic monk although he
+          was only twelve years old. He stayed in church pretty much all the time and, although he was
+          young, he fought the spiritual war faithfully.
+        </p>
+        <p>
+          During the days when there was liturgy, he helped in making the holy bread (Orban), and during
+          the days that had no liturgy, he asked the neighboring women to make him some bread to sustain
+          him. He walked around the church and did everything that was necessary without ever being lazy.
+        </p>
+        <p>
+          His pure faith, courageous witness, and martyrdom at such a young age make him an inspiration
+          to all — especially to the children and youth of our parish who bear his blessed name.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CORE BELIEFS ═══ -->
+<section id="beliefs">
+  <div class="container">
+    <div class="text-center reveal">
+      <p class="section-label">What We Believe</p>
+      <div class="divider"></div>
+      <h2 class="section-title">Our Core Beliefs</h2>
+      <p class="section-subtitle">Grounded in the ancient apostolic faith, we hold to the fullness of Christian truth handed down through the centuries.</p>
+    </div>
+    <div class="beliefs-grid" style="margin-top: 3rem;">
+      <div class="belief-card reveal">
+        <div class="belief-icon">✝</div>
+        <div class="belief-title">The One True God</div>
+        <p class="belief-text">We believe that God is one fullness of perfection; a perfect Spirit, timeless, without beginning, all-powerful and all-wise. He is good beyond measure, just, and all-holy.</p>
+      </div>
+      <div class="belief-card reveal">
+        <div class="belief-icon">☩</div>
+        <div class="belief-title">The Holy Trinity</div>
+        <p class="belief-text">We believe that God is one in Essence and Trinity in Persons — the one true God appearing to us as Father, Son, and Holy Spirit: three Persons sharing one divine nature.</p>
+      </div>
+      <div class="belief-card reveal">
+        <div class="belief-icon">🌿</div>
+        <div class="belief-title">Creation</div>
+        <p class="belief-text">We believe that all things are under God's control. He provides for every creature and guides everything to a good goal, loving and looking after us as a mother looks after her child.</p>
+      </div>
+      <div class="belief-card reveal">
+        <div class="belief-icon">🕊</div>
+        <div class="belief-title">Our Lord Jesus Christ</div>
+        <p class="belief-text">We believe in the Incarnation of the Word of God — that Jesus Christ is fully God and fully man, who died for our sins and rose again on the third day for our salvation.</p>
+      </div>
+      <div class="belief-card reveal">
+        <div class="belief-icon">🔥</div>
+        <div class="belief-title">The Holy Spirit</div>
+        <p class="belief-text">We believe in the Holy Spirit, the Lord and Giver of Life, who proceeds from the Father and dwells in the Church, guiding, sanctifying, and empowering the faithful.</p>
+      </div>
+      <div class="belief-card reveal">
+        <div class="belief-icon">⛪</div>
+        <div class="belief-title">The Holy Church</div>
+        <p class="belief-text">We believe in the One, Holy, Universal, and Apostolic Church — the body of Christ — through which the sacraments are administered and the faithful are nurtured in grace.</p>
+      </div>
+      <div class="belief-card reveal">
+        <div class="belief-icon">⭐</div>
+        <div class="belief-title">The Second Coming</div>
+        <p class="belief-text">We await the glorious Second Coming of Jesus Christ, when He will judge the living and the dead, and establish the eternal Kingdom in its fullness.</p>
+      </div>
+      <div class="belief-card reveal">
+        <div class="belief-icon">📜</div>
+        <div class="belief-title">The Creed of Faith</div>
+        <p class="belief-text">We profess the Nicene Creed — the ancient declaration of Christian faith affirmed at the Council of Nicaea — as the summary of our belief and the foundation of our worship.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SUNDAY SCHOOL ═══ -->
+<section id="sunday-school">
+  <div class="container">
+    <div class="text-center reveal">
+      <p class="section-label">For Our Children</p>
+      <div class="divider"></div>
+      <h2 class="section-title">Sunday School</h2>
+    </div>
+    <div class="ss-verse reveal" style="margin-top: 1.5rem;">
+      "Children are God's gift; they are heaven's generous reward."
+      <cite>Psalm 127:3</cite>
+    </div>
+    <p style="text-align:center; color: var(--text-muted); max-width:600px; margin: 0 auto 3rem; font-size:0.97rem;">
+      Our Sunday School programs nurture the faith and spiritual growth of children across all age groups,
+      raising the next generation with a deep love of the Church and the Holy Mysteries.
+    </p>
+    <div class="ss-groups">
+      <div class="ss-group reveal">
+        <div class="ss-group-icon">🍼</div>
+        <div class="ss-group-name">Crèche</div>
+        <div class="ss-group-age">0 – 2 years (with parents)</div>
+      </div>
+      <div class="ss-group reveal">
+        <div class="ss-group-icon">🌱</div>
+        <div class="ss-group-name">Pre-Kindy One</div>
+        <div class="ss-group-age">2 – 3 years (with parents)</div>
+      </div>
+      <div class="ss-group reveal">
+        <div class="ss-group-icon">🌼</div>
+        <div class="ss-group-name">Pre-Kindy Two</div>
+        <div class="ss-group-age">4 – 5 years</div>
+      </div>
+      <div class="ss-group reveal">
+        <div class="ss-group-icon">📚</div>
+        <div class="ss-group-name">Primary School</div>
+        <div class="ss-group-age">Kindergarten – Year 6</div>
+      </div>
+      <div class="ss-group reveal">
+        <div class="ss-group-icon">🎓</div>
+        <div class="ss-group-name">High School</div>
+        <div class="ss-group-age">Year 7 – Year 12</div>
+      </div>
+      <div class="ss-group reveal">
+        <div class="ss-group-icon">✨</div>
+        <div class="ss-group-name">Pre-Servants</div>
+        <div class="ss-group-age">18 years and over</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HISTORY ═══ -->
+<section id="history">
+  <div class="container">
+    <div class="history-grid">
+      <div class="history-content reveal">
+        <p class="section-label">Our Heritage</p>
+        <div class="divider"></div>
+        <h2 class="section-title">Church History</h2>
+        <p style="margin-top:1.5rem;">
+          The Coptic Orthodox Church is the ancient Christian church founded in Egypt by St Mark the Apostle
+          in the first century AD. The Copts, as successors of the ancient Egyptians, played an essential
+          role in the whole Christian world — especially during the first five centuries of Christianity.
+        </p>
+        <p>
+          Their religious background helped them to accept Christianity with eagerness and to enjoy its depth
+          through their ascetic life, meditation, and studying of the Holy Scriptures. The Copts are proud
+          of the apostolicity of their church, whose founder is St Mark, one of the seventy Apostles.
+        </p>
+        <p>
+          Today, St Wanas Coptic Orthodox Church in Belmore carries this ancient legacy forward, serving
+          the Inner-West Sydney community and beyond with the same unwavering faith that has endured
+          for nearly two thousand years.
+        </p>
+      </div>
+      <div class="reveal">
+        <div class="pillars-grid">
+          <div class="pillar">
+            <div class="pillar-name">Apostolic</div>
+            <p class="pillar-text">Founded by St Mark the Apostle — our faith traces directly to the Apostles of Christ.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-name">Biblical</div>
+            <p class="pillar-text">Deeply rooted in Holy Scripture, studied and treasured across every generation.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-name">Traditional</div>
+            <p class="pillar-text">Preserving the rich liturgical heritage of the ancient Coptic Orthodox Church.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-name">Sacramental</div>
+            <p class="pillar-text">The seven holy sacraments are the living heart of our worship and community life.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-name">Conservative</div>
+            <p class="pillar-text">Faithful to the orthodox teachings of the Church Fathers and Ecumenical Councils.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-name">Community</div>
+            <p class="pillar-text">A welcoming family where everyone — of any age or background — finds belonging.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DONATE BANNER ═══ -->
+<div id="donate" style="padding: 64px 0;">
+  <div class="container">
+    <div class="donate-inner reveal">
+      <div class="donate-text">
+        <h2>Build Our Church Together</h2>
+        <p>Your generous support helps us grow our community, expand our ministries, and build a lasting home for future generations of faith.</p>
+      </div>
+      <div class="donate-actions">
+        <a href="https://stwanas.chmeetings.com" target="_blank" class="btn btn-white">Donate Now</a>
+        <a href="https://www.stwanas.au/building-fund" target="_blank" class="btn btn-outline-white">Building Fund</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact">
+  <div class="container">
+    <div class="text-center reveal">
+      <p class="section-label">Get in Touch</p>
+      <div class="divider"></div>
+      <h2 class="section-title">Contact Us</h2>
+      <p class="section-subtitle">We'd love to hear from you. Come visit us or reach out anytime.</p>
+    </div>
+    <div class="contact-grid" style="margin-top: 3rem;">
+      <div class="contact-info reveal">
+        <div class="contact-detail">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Address</div>
+            <div class="contact-value">
+              <a href="https://www.google.com/maps/search/458+Burwood+Rd+Belmore+NSW+2192" target="_blank">
+                458 Burwood Road<br />Belmore, NSW 2192
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-label">Phone</div>
+            <div class="contact-value">
+              <a href="tel:+61288808998">02 8880 8998</a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon">✉</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value">
+              <a href="mailto:info@stwanas.au">info@stwanas.au</a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon">📷</div>
+          <div>
+            <div class="contact-label">Instagram</div>
+            <div class="contact-value">
+              <a href="https://www.instagram.com/stwanascoptichurch" target="_blank">@stwanascoptichurch</a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon">👥</div>
+          <div>
+            <div class="contact-label">Facebook</div>
+            <div class="contact-value">
+              <a href="https://www.facebook.com/stwanascoptichurch" target="_blank">@stwanascoptichurch</a>
+            </div>
+          </div>
+        </div>
+        <div class="map-embed">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3313.012!2d151.0846!3d-33.9196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12bb1a4e4b3e8d%3A0x4e4d7c3c6b7e8e!2s458+Burwood+Rd%2C+Belmore+NSW+2192!5e0!3m2!1sen!2sau!4v1680000000000"
+            loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
+            title="St Wanas Church Location">
+          </iframe>
+        </div>
+      </div>
+
+      <div class="contact-form reveal">
+        <h3>Send Us a Message</h3>
+        <form onsubmit="handleFormSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input type="text" id="firstName" placeholder="Your first name" required />
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" id="lastName" placeholder="Your last name" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="your@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" placeholder="How can we help?" />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="Your message..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-navy" style="width:100%; justify-content:center;">
+            Send Message
+          </button>
+          <p id="form-success" style="display:none; text-align:center; color: var(--gold); margin-top:12px; font-weight:600;">
+            ✓ Thank you! Your message has been sent.
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="https://static.wixstatic.com/media/1bd485_ee0b3c15e4994e38be9def08186466d5~mv2.png/v1/fill/w_166,h_166,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/st%20wanas%20logo%20png.png" alt="St Wanas Logo" />
+        <div class="footer-brand-name">St Wanas</div>
+        <div class="footer-brand-sub">Coptic Orthodox Church</div>
+        <p>A community of faith, rooted in the ancient Coptic tradition, welcoming all to worship and grow together in Christ.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/stwanascoptichurch" target="_blank" class="social-icon" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="https://www.facebook.com/stwanascoptichurch" target="_blank" class="social-icon" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a4 4 0 0 0-4 4v3H8v4h3v8h4v-8h3l1-4h-4V6a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="mailto:info@stwanas.au" class="social-icon" aria-label="Email">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>About</h4>
+        <ul>
+          <li><a href="#about">About the Church</a></li>
+          <li><a href="#beliefs">Core Beliefs</a></li>
+          <li><a href="#patron">Our Patron Saint</a></li>
+          <li><a href="#history">Church History</a></li>
+          <li><a href="#leaders">Our Leaders</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Ministries</h4>
+        <ul>
+          <li><a href="#services">Weekly Services</a></li>
+          <li><a href="#sunday-school">Sunday School</a></li>
+          <li><a href="https://www.stwanas.au/senior-service" target="_blank">Senior Service</a></li>
+          <li><a href="https://stwanas.square.site/" target="_blank">Bookshop</a></li>
+          <li><a href="https://www.stwanas.au/building-fund" target="_blank">Building Fund</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="https://www.google.com/maps/search/458+Burwood+Rd+Belmore+NSW" target="_blank">458 Burwood Rd, Belmore NSW 2192</a></li>
+          <li><a href="tel:+61288808998">02 8880 8998</a></li>
+          <li><a href="mailto:info@stwanas.au">info@stwanas.au</a></li>
+          <li><a href="https://stwanas.chmeetings.com" target="_blank">Donate Online</a></li>
+          <li><a href="https://www.stwanas.au/event-list" target="_blank">Upcoming Events</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 St Wanas Coptic Orthodox Church. All rights reserved.</p>
+      <p>Led by <a href="#leaders">Very Rev. Fr Suriel Hanna</a> · Diocese of Sydney · <a href="https://www.stwanas.au" target="_blank">stwanas.au</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ SCRIPTS ═══ -->
+<script>
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Mobile hamburger
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+
+  // Close mobile menu on link click
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+
+  // Smooth scroll for all anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = 80;
+        const y = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Scroll reveal
+  const revealElements = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  revealElements.forEach(el => observer.observe(el));
+
+  // Contact form handler
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    setTimeout(() => {
+      document.getElementById('form-success').style.display = 'block';
+      e.target.reset();
+      btn.textContent = 'Send Message';
+      btn.disabled = false;
+    }, 1200);
+  }
+
+  // Active nav link highlighting
+  const sections = document.querySelectorAll('section[id], div[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 100) {
+        current = section.getAttribute('id');
+      }
+    });
+    navLinks.forEach(link => {
+      link.style.color = '';
+      const href = link.getAttribute('href');
+      if (href && href.includes(current) && current) {
+        link.style.color = 'var(--gold)';
+      }
+    });
+  });
+</script>
+</body>
+</html>
