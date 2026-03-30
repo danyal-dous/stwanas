@@ -1533,22 +1533,22 @@
     successMsg.style.display = 'none';
     errorMsg.style.display = 'none';
 
-    const data = Object.fromEntries(new FormData(form));
-
     try {
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(data)
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
       });
       const json = await res.json();
       if (json.success) {
         successMsg.style.display = 'block';
         form.reset();
       } else {
+        console.error('Web3Forms error:', json);
         errorMsg.style.display = 'block';
       }
     } catch (err) {
+      console.error('Form submit error:', err);
       errorMsg.style.display = 'block';
     } finally {
       btn.textContent = 'Send Message';
